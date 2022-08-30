@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Basic -->
+
+<head th:replace="includes/header :: heading">
+
+</head>
+
+<body>
+<!-- Start Main Top -->
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid p-2">
+        <a class="navbar-brand" th:href= "@{/}">SpringStore</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:text="${!session.isEmpty()} ? 'Logout'"  th:href="@{/Customer/account/logout}"></a>
+                </li>
+            </ul>
+            <form class="d-flex" role="search" >
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="row d-flex justify-content-center text-center">
+    <div class="col-4">
+        <h5>Add Products</h5>
+    </div>
+</div>
+<form th:object="${productPage}" th:action="@{/Admin/addProduct}" method="post" enctype="multipart/form-data" >
+<div class="container">
+    <div class="row d-flex justify-content-center text-center">
+        <div class="form-group col-4">
+            <label for="productName">Product name</label>
+            <input id="productName" th:field="*{productName}" type="text" class="form-control"  aria-describedby="emailHelp" placeholder="product Name">
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center text-center">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="category">product category</label>
+                <input type="text" th:field="*{productCategory}" class="form-control" id="category" aria-describedby="emailHelp" placeholder="product category">
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center text-center">
+        <div class="col-4">
+
+            <div class="form-group">
+                <label for="price">product price</label>
+                <input type="text" th:field="*{productPrice}" class="form-control" id="price" aria-describedby="emailHelp" placeholder="product price">
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center text-center">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="quantity">quantity</label>
+                <input type="text" th:field="*{productQuantity}" class="form-control" id="quantity" aria-describedby="emailHelp" placeholder="product quantity">
+            </div>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center text-center">
+        <div class="col-4">
+            <div class="form-group">
+                <input type="file" name="image" accept="image/*" class="form-control-file">
+            </div>
+            <div class="open_grepper_editor" title="Edit & Save To Grepper"></div>
+        </div>
+    </div>
+</div>
+    <div class="row d-flex justify-content-center text-center">
+        <div class="col-4">
+    <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    <div class="row d-flex justify-content-center text-center">
+        <div class="col-4" th:if="${success != null}">
+            <p th:text="${success}" class="alert-success"></p>
+        </div>
+    </div>
+
+</form>
+<div class="row d-flex justify-content-center text-center">
+    <div class="col-4">
+        <a th:href="@{/Admin}">go back to home page</a>
+    </div>
+</div>
+</body>
+</html>

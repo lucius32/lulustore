@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg bg-light" th:fragment="navbar">
+    <div class="container-fluid p-2">
+        <a class="navbar-brand" th:href= "@{/}">SpringStore</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href= "@{/}" >about</a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link active" aria-current="page" th:text="${session.isEmpty()} ? 'Login'"   th:href="@{/Customer/account/login}"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href= "@{/Cart}">Cart<span  class="badge badge-danger" style="color: white;background: red" ></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href= "@{/Likes/}">WishList<span class="badge badge-danger" style="color: white;background: blue"></span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:text="${session.auth != null or session.adminEmail != null} ? 'Logout'"  th:href="@{/Customer/account/logout}"></a>
+                </li>
+
+                <li class="nav-item" >
+                    <a th:href="@{/Customer/account/create}" class="btn btn-primary mx-1">SignUp</a>
+                </li>
+
+            </ul>
+            <form class="d-flex" role="search" >
+                    <a th:href="@{/Admin}" class="btn btn-primary mx-1">Admin</a>
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>

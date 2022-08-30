@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="includes/header :: heading">
+
+    </head>
+<body>
+<nav th:replace="includes/nav :: navbar"></nav>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">S/N</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+        </tr>
+        </thead>
+        <ta>
+            <tr th:each="product : ${AllCart}">
+                <th scope="row" ></th>
+                <td th:text="${product.productName}"></td>
+                <td th:text="${product.productCategory}"></td>
+                <td th:text="${product.productPrice}"></td>
+                <td th:text="${product.productQuantity}"></td>
+                <td><a class="btn btn-info" th:href="@{/Cart/deleteCartProduct/{id}(id=${product.getProdId()})}">Delete</a>&nbsp;
+                </td>
+            </tr>
+        </ta>
+    </table>
+</div>
+</body>
+</html>
